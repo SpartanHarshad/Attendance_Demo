@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AttendanceApp</string>
+    <string name="daily_login">Daily Attendance</string>
 </resources>
