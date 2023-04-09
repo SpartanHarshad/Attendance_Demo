@@ -8,22 +8,38 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.harshad.attendanceapp.R
 import com.harshad.attendanceapp.databinding.ActivityMainBinding
+import com.harshad.attendanceapp.localdata.ReportEntity
+import com.harshad.attendanceapp.viewmodel.AttendanceViewModel
+import com.harshad.attendanceapp.viewmodel.AttendanceViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
     private val TAG = "MainActivity"
+    private lateinit var attendanceViewModel: AttendanceViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        initViewModel()
         initClicks()
+    }
+
+    private fun initViewModel() {
+        val attendanceApplication = application as AttendanceApplication
+        val attendanceRepo = attendanceApplication.attendanceRepo
+        val factory = AttendanceViewModelFactory(attendanceRepo)
+        attendanceViewModel = ViewModelProvider(this, factory)[AttendanceViewModel::class.java]
     }
 
     private fun initClicks() {
@@ -37,7 +53,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 logInUser()
             }
             R.id.btn_register -> {
-                gotoDesireScreen(RegisterActivity())
+                val regi = Intent(this, RegisterActivity::class.java)
+                startActivity(regi)
             }
         }
     }
@@ -59,7 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithEmail:success")
-                gotoDesireScreen(SignInOutActivity())
+                localSystemLogIn()
             } else {
                 // sign in fails, display a message to the user.
                 Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -68,8 +85,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun gotoDesireScreen(desireActivity: Activity) {
+    private fun localSystemLogIn() {
+        val dateTime = Calendar.getInstance().time
+        val timeFormatter = SimpleDateFormat("h:mm a")
+        val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+        val logInTime = timeFormatter.format(dateTime)
+        val loginDate = dateFormatter.format(dateTime)
+        val reportEntity = ReportEntity(loginDate, logInTime, "")
+        attendanceViewModel.signInViewModel(reportEntity)
+        gotoSignInOutScreen(SignInOutActivity(), logInTime, loginDate)
+    }
+
+    private fun gotoSignInOutScreen(
+        desireActivity: SignInOutActivity,
+        logInTime: String,
+        loginDate: String
+    ) {
         val newActivity = Intent(this, desireActivity::class.java)
+        newActivity.putExtra("log_in_time", logInTime)
+        newActivity.putExtra("log_in_date", loginDate)
         startActivity(newActivity)
     }
 

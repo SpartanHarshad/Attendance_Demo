@@ -24,9 +24,17 @@ class SignInOutActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_attendance)
+        setIntentData()
         checkUserLoggedIn()
         initData()
         initClicks()
+    }
+
+    private fun setIntentData() {
+        val loginTime = intent.getStringExtra("log_in_time")
+        val loginDate = intent.getStringExtra("log_in_date")
+        binding.tvDate.text = loginDate
+        binding.tvTime.text = loginTime
     }
 
     private fun initData() {
@@ -58,7 +66,7 @@ class SignInOutActivity : AppCompatActivity(), View.OnClickListener {
                 logOutUser()
             }
             R.id.btn_view_report -> {
-               // gotoActivity(ShowAttendanceActivity())
+                // gotoActivity(ShowAttendanceActivity())
             }
         }
     }
