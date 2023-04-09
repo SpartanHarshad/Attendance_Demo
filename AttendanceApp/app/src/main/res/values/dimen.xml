@@ -16,21 +16,21 @@
     <dimen name="dp_28">28dp</dimen>
     <dimen name="dp_30">30dp</dimen>
     <!--Sdp-->
-    <dimen name="sdp_2">2sdp</dimen>
-    <dimen name="sdp_4">4sdp</dimen>
-    <dimen name="sdp_6">6sdp</dimen>
-    <dimen name="sdp_8">8sdp</dimen>
-    <dimen name="sdp_10">10sdp</dimen>
-    <dimen name="sdp_12">12sdp</dimen>
-    <dimen name="sdp_14">14sdp</dimen>
-    <dimen name="sdp_16">16sdp</dimen>
-    <dimen name="sdp_18">18sdp</dimen>
-    <dimen name="sdp_20">20sdp</dimen>
-    <dimen name="sdp_22">22sdp</dimen>
-    <dimen name="sdp_24">24sdp</dimen>
-    <dimen name="sdp_26">26sdp</dimen>
-    <dimen name="sdp_28">28sdp</dimen>
-    <dimen name="sdp_30">30sdp</dimen>
+    <dimen name="sdp_2">2sp</dimen>
+    <dimen name="sdp_4">4sp</dimen>
+    <dimen name="sdp_6">6sp</dimen>
+    <dimen name="sdp_8">8sp</dimen>
+    <dimen name="sdp_10">10sp</dimen>
+    <dimen name="sdp_12">12sp</dimen>
+    <dimen name="sdp_14">14sp</dimen>
+    <dimen name="sdp_16">16sp</dimen>
+    <dimen name="sdp_18">18sp</dimen>
+    <dimen name="sdp_20">20sp</dimen>
+    <dimen name="sdp_22">22sp</dimen>
+    <dimen name="sdp_24">24sp</dimen>
+    <dimen name="sdp_26">26sp</dimen>
+    <dimen name="sdp_28">28sp</dimen>
+    <dimen name="sdp_30">30sp</dimen>
 
     <dimen name="dp_35">35dp</dimen>
     <dimen name="dp_40">40dp</dimen>

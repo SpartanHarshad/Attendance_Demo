@@ -1,4 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AttendanceApp</string>
     <string name="daily_login">Daily Attendance</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="log_in_txt">Log In</string>
+    <string name="register_txt">Register</string>
+    <string name="attendance_txt">Attendance Screen</string>
 </resources>
