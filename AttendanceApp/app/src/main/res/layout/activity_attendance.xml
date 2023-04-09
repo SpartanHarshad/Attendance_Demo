@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.SignInOutActivity">
+        tools:context=".ui.SignInActivity">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_attendance_label"
@@ -45,19 +45,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_100"
-            android:background="@color/purple_200"
-            android:text="@string/sign_in"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_time" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sign_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +53,6 @@
             android:text="@string/sign_out"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_time" />

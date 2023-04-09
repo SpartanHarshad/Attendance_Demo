@@ -1,5 +1,6 @@
 package com.harshad.attendanceapp.localdata
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,5 +16,5 @@ interface AttendanceReportDao {
     suspend fun signOutUser(time: String)
 
     @Query("SELECT * FROM 'Attendance'")
-    fun getAttendanceReport(): List<ReportEntity>
+    fun getAttendanceReport(): LiveData<List<ReportEntity>>
 }

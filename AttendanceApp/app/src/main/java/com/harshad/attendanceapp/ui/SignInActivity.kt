@@ -15,7 +15,7 @@ import com.harshad.attendanceapp.viewmodel.AttendanceViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class SignInOutActivity : AppCompatActivity(), View.OnClickListener {
+class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityAttendanceBinding
     val auth = FirebaseAuth.getInstance()
@@ -25,7 +25,6 @@ class SignInOutActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_attendance)
         setIntentData()
-        checkUserLoggedIn()
         initData()
         initClicks()
     }
@@ -44,29 +43,19 @@ class SignInOutActivity : AppCompatActivity(), View.OnClickListener {
         attendanceViewModel = ViewModelProvider(this, factory)[AttendanceViewModel::class.java]
     }
 
-    private fun checkUserLoggedIn() {
-        if (auth.currentUser != null) {
-            binding.btnSignOut.visibility = View.VISIBLE
-            binding.btnSignIn.visibility = View.GONE
-        }
-    }
 
     private fun initClicks() {
-        binding.btnSignIn.setOnClickListener(this)
         binding.btnSignOut.setOnClickListener(this)
         binding.btnViewReport.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_sign_in -> {
-                gotoActivity(MainActivity())
-            }
             R.id.btn_sign_out -> {
                 logOutUser()
             }
             R.id.btn_view_report -> {
-                // gotoActivity(ShowAttendanceActivity())
+                gotoActivity(AttendanceListActivity())
             }
         }
     }

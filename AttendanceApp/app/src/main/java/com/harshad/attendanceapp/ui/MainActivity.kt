@@ -1,6 +1,5 @@
 package com.harshad.attendanceapp.ui
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -93,11 +92,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val loginDate = dateFormatter.format(dateTime)
         val reportEntity = ReportEntity(loginDate, logInTime, "")
         attendanceViewModel.signInViewModel(reportEntity)
-        gotoSignInOutScreen(SignInOutActivity(), logInTime, loginDate)
+        gotoSignInOutScreen(SignInActivity(), logInTime, loginDate)
     }
 
     private fun gotoSignInOutScreen(
-        desireActivity: SignInOutActivity,
+        desireActivity: SignInActivity,
         logInTime: String,
         loginDate: String
     ) {

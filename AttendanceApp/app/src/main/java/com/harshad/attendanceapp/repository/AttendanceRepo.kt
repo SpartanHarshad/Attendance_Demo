@@ -1,6 +1,7 @@
 package com.harshad.attendanceapp.repository
 
 
+import androidx.lifecycle.LiveData
 import com.harshad.attendanceapp.localdata.AttendanceReportDao
 import com.harshad.attendanceapp.localdata.ReportEntity
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +22,7 @@ class AttendanceRepo(val attendanceReportDao: AttendanceReportDao) {
         }
     }
 
-    fun getAttendanceReport(): List<ReportEntity> {
+    fun getAttendanceReport(): LiveData<List<ReportEntity>> {
         return attendanceReportDao.getAttendanceReport()
     }
 
