@@ -7,4 +7,7 @@
     <string name="log_in_txt">Log In</string>
     <string name="register_txt">Register</string>
     <string name="attendance_txt">Attendance Screen</string>
+    <string name="registration_txt">Registration Screen</string>
+    <string name="user_name_hint">Enter user name</string>
+    <string name="phone_no_hint">Enter phone no</string>
 </resources>
