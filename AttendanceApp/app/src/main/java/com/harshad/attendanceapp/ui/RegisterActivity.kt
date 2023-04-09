@@ -1,4 +1,4 @@
-package com.harshad.attendanceapp
+package com.harshad.attendanceapp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,12 +10,10 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.harshad.attendanceapp.R
 import com.harshad.attendanceapp.databinding.ActivityRegisterBinding
 import com.harshad.attendanceapp.models.User
 import java.util.HashMap
-import java.util.Objects
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 

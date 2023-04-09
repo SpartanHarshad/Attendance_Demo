@@ -1,4 +1,4 @@
-package com.harshad.attendanceapp
+package com.harshad.attendanceapp.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.harshad.attendanceapp.R
 import com.harshad.attendanceapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 logInUser()
             }
             R.id.btn_register -> {
-                gotoDesireScreen(RegisterActivity(), auth.currentUser)
+                gotoDesireScreen(RegisterActivity())
             }
         }
     }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithEmail:success")
-                gotoDesireScreen(AttendanceActivity(), auth.currentUser)
+                gotoDesireScreen(SignInOutActivity())
             } else {
                 // sign in fails, display a message to the user.
                 Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -68,9 +68,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun gotoDesireScreen(desireActivity: Activity, currentUser: FirebaseUser?) {
+    private fun gotoDesireScreen(desireActivity: Activity) {
         val newActivity = Intent(this, desireActivity::class.java)
-        newActivity.putExtra("currentUser", currentUser)
         startActivity(newActivity)
     }
 

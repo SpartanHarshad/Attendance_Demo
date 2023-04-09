@@ -10,4 +10,8 @@
     <string name="registration_txt">Registration Screen</string>
     <string name="user_name_hint">Enter user name</string>
     <string name="phone_no_hint">Enter phone no</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="view_report">View Report</string>
+
 </resources>
