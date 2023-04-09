@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.harshad.attendanceapp.R
 import com.harshad.attendanceapp.databinding.ActivityAttendanceBinding
+import com.harshad.attendanceapp.util.Util
 import com.harshad.attendanceapp.viewmodel.AttendanceViewModel
 import com.harshad.attendanceapp.viewmodel.AttendanceViewModelFactory
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -67,10 +67,18 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun logOutUser() {
         val time = Calendar.getInstance().time
-        val sdf = SimpleDateFormat("h:mm a")
-        val formattedTime = sdf.format(time)
+        val formattedTime = Util.getFormattedTime(time)
         attendanceViewModel.signOutViewModel(formattedTime)
         auth.signOut()
-        gotoActivity(MainActivity())
+        gotoSignScreen(time)
+    }
+
+    private fun gotoSignScreen(time: Date) {
+        val logOutDate = Util.getFormattedDate(time)
+        val logOutTime = Util.getFormattedTime(time)
+        val newActivity = Intent(this, SignOutActivity::class.java)
+        newActivity.putExtra("log_out_time", logOutTime)
+        newActivity.putExtra("log_out_date", logOutDate)
+        startActivity(newActivity)
     }
 }

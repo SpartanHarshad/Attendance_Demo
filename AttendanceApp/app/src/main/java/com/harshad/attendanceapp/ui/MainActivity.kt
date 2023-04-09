@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.harshad.attendanceapp.R
 import com.harshad.attendanceapp.databinding.ActivityMainBinding
 import com.harshad.attendanceapp.localdata.ReportEntity
+import com.harshad.attendanceapp.util.Util
 import com.harshad.attendanceapp.viewmodel.AttendanceViewModel
 import com.harshad.attendanceapp.viewmodel.AttendanceViewModelFactory
 import java.text.SimpleDateFormat
@@ -86,10 +87,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun localSystemLogIn() {
         val dateTime = Calendar.getInstance().time
-        val timeFormatter = SimpleDateFormat("h:mm a")
-        val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-        val logInTime = timeFormatter.format(dateTime)
-        val loginDate = dateFormatter.format(dateTime)
+        val logInTime = Util.getFormattedTime(dateTime)
+        val loginDate = Util.getFormattedDate(dateTime)
         val reportEntity = ReportEntity(loginDate, logInTime, "")
         attendanceViewModel.signInViewModel(reportEntity)
         gotoSignInOutScreen(SignInActivity(), logInTime, loginDate)
