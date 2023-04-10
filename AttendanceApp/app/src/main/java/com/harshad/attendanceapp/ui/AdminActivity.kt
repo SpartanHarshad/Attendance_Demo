@@ -1,5 +1,6 @@
 package com.harshad.attendanceapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.harshad.attendanceapp.databinding.ActivityAdminBinding
 import com.harshad.attendanceapp.models.User
 import com.harshad.attendanceapp.models.UserModel
 import kotlinx.coroutines.NonCancellable.children
+import kotlinx.coroutines.NonCancellable.start
 
 class AdminActivity : AppCompatActivity(), OnItemClick {
 
@@ -41,7 +43,7 @@ class AdminActivity : AppCompatActivity(), OnItemClick {
                         newUserList.add(newUser)
                     }
                 }
-               userDAdapter.notifyDataSetChanged()
+                userDAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -59,6 +61,8 @@ class AdminActivity : AppCompatActivity(), OnItemClick {
     }
 
     override fun onItemClick(userModel: UserModel?) {
-        Toast.makeText(this, "user name ${userModel?.userName}", Toast.LENGTH_SHORT).show()
+        val reportScreen = Intent(this, AttendanceListActivity::class.java)
+        reportScreen.putExtra("email", userModel?.emailId)
+        startActivity(reportScreen)
     }
 }

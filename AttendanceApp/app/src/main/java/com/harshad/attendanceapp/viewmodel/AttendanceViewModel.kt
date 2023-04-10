@@ -15,7 +15,7 @@ class AttendanceViewModel(val attendanceRepo: AttendanceRepo) : ViewModel() {
         attendanceRepo.signOutRepo(time)
     }
 
-    fun getAttendanceReports(): LiveData<List<ReportEntity>> {
-        return attendanceRepo.getAttendanceReport()
+    fun getReportByEmailId(email:String):LiveData<List<ReportEntity>>{
+        return attendanceRepo.getReportByEmail(email)
     }
 }

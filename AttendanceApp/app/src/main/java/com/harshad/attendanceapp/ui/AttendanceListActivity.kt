@@ -2,6 +2,7 @@ package com.harshad.attendanceapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +26,24 @@ class AttendanceListActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_show_attendance)
         initViewModel()
         setRecyclerview()
-        showAttendanceReports()
+        getIntentData()
+    }
+
+    private fun getIntentData() {
+        val email = intent.getStringExtra("email")
+        if (email != null) {
+            showReportByEmail(email)
+        } else {
+            showReportByEmail(MainActivity.userEmail)
+        }
+    }
+
+    private fun showReportByEmail(email: String) {
+        reports.clear()
+        attendanceViewModel.getReportByEmailId(email).observe(this) {
+            reports.addAll(it)
+            attAdapter.notifyDataSetChanged()
+        }
     }
 
     private fun initViewModel() {
@@ -41,11 +59,4 @@ class AttendanceListActivity : AppCompatActivity() {
         binding.rvAttendance.adapter = attAdapter
     }
 
-    private fun showAttendanceReports() {
-        attendanceViewModel.getAttendanceReports().observe(this) {
-            reports.clear()
-            reports.addAll(it)
-            attAdapter.notifyDataSetChanged()
-        }
-    }
 }

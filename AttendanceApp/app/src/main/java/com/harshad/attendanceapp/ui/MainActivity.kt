@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val TAG = "MainActivity"
     private lateinit var attendanceViewModel: AttendanceViewModel
 
+    companion object {
+        var userEmail = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun logInUser() {
         val email = binding.etvEmail.text.toString()
         val pwd = binding.etvPassword.text.toString()
+        userEmail = email
         if (email.isNotEmpty() && pwd.isNotEmpty()) {
             logInGotoAttendanceScreen(email, pwd)
         } else if (pwd.isEmpty() || pwd.isBlank()) {
@@ -90,11 +94,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun localSystemLogIn(email:String) {
+    private fun localSystemLogIn(email: String) {
         val dateTime = Calendar.getInstance().time
         val logInTime = Util.getFormattedTime(dateTime)
         val loginDate = Util.getFormattedDate(dateTime)
-        val reportEntity = ReportEntity(loginDate, logInTime, "",email)
+        val reportEntity = ReportEntity(loginDate, logInTime, "", email)
         attendanceViewModel.signInViewModel(reportEntity)
         gotoSignInOutScreen(SignInActivity(), logInTime, loginDate)
     }

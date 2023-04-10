@@ -15,6 +15,6 @@ interface AttendanceReportDao {
     @Query("UPDATE Attendance SET sign_Out = :time")
     suspend fun signOutUser(time: String)
 
-    @Query("SELECT * FROM 'Attendance'")
-    fun getAttendanceReport(): LiveData<List<ReportEntity>>
+    @Query("SELECT * FROM 'Attendance' WHERE email = :emailId")
+    fun getUserReportByEmail(emailId: String): LiveData<List<ReportEntity>>
 }

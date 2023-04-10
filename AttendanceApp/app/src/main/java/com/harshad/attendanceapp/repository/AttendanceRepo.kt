@@ -22,8 +22,9 @@ class AttendanceRepo(val attendanceReportDao: AttendanceReportDao) {
         }
     }
 
-    fun getAttendanceReport(): LiveData<List<ReportEntity>> {
-        return attendanceReportDao.getAttendanceReport()
+
+    fun getReportByEmail(email:String):LiveData<List<ReportEntity>>{
+        return attendanceReportDao.getUserReportByEmail(email)
     }
 
 }
