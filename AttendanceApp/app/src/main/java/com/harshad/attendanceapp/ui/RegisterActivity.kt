@@ -60,13 +60,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             val phoneNo = binding.etvPhoneNo.text.toString()
             val user = User(userName, pwd, emailId, phoneNo)
             val newUserMap = hashMapOf<String, User>()
-            newUserMap[userName] = user
+            newUserMap["NewUser"] = user
             saveUserData(newUserMap, user)
         }
     }
 
     private fun saveUserData(newUserMap: HashMap<String, User>, user: User) {
-        val usersRef: DatabaseReference = dbRef.ref.child("Users")
+        val usersRef: DatabaseReference = dbRef //ref.child("Users")
         usersRef.child(user.userName).setValue(newUserMap).addOnCompleteListener(this) { task ->
             if (task.isComplete) {
                 addUserDetailsToAuth(user)

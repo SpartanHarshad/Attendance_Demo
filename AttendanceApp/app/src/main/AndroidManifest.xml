@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AttendanceApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SignOutActivity"
             android:exported="false" />
         <activity

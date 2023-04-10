@@ -76,7 +76,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithEmail:success")
-                localSystemLogIn()
+                if (email == Util.adminEmail) {
+                    val admin = Intent(this, AdminActivity::class.java)
+                    startActivity(admin)
+                } else {
+                    localSystemLogIn()
+                }
             } else {
                 // sign in fails, display a message to the user.
                 Log.w(TAG, "signInWithEmail:failure", task.exception)
