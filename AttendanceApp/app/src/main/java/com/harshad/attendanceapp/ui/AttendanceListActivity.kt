@@ -42,10 +42,10 @@ class AttendanceListActivity : AppCompatActivity() {
     }
 
     private fun showAttendanceReports() {
-        attendanceViewModel.getAttendanceReports().observe(this, Observer {
+        attendanceViewModel.getAttendanceReports().observe(this) {
             reports.clear()
             reports.addAll(it)
             attAdapter.notifyDataSetChanged()
-        })
+        }
     }
 }
