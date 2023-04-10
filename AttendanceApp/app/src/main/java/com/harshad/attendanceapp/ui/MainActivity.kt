@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val admin = Intent(this, AdminActivity::class.java)
                     startActivity(admin)
                 } else {
-                    localSystemLogIn()
+                    localSystemLogIn(email)
                 }
             } else {
                 // sign in fails, display a message to the user.
@@ -90,11 +90,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun localSystemLogIn() {
+    private fun localSystemLogIn(email:String) {
         val dateTime = Calendar.getInstance().time
         val logInTime = Util.getFormattedTime(dateTime)
         val loginDate = Util.getFormattedDate(dateTime)
-        val reportEntity = ReportEntity(loginDate, logInTime, "")
+        val reportEntity = ReportEntity(loginDate, logInTime, "",email)
         attendanceViewModel.signInViewModel(reportEntity)
         gotoSignInOutScreen(SignInActivity(), logInTime, loginDate)
     }
